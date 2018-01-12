@@ -8,7 +8,7 @@ clone_folder: C:\MyProjects\PowerShell-Core-Compatibility-Alias
 
 environment:
   NugetApiKey:
-    secure: ***************
+    secure: sqj8QGRYue5Vq3vWm2GdcCttqyOkt7NOheKlnmIUq1UcgVrmQezFArp/2Z1+G3oT
 
 # Allow WMF5 (i.e. PowerShellGallery functionality)
 os: WMF 5
