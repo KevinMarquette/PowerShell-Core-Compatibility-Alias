@@ -18,4 +18,7 @@ foreach ($folder in @('classes', 'private', 'public', 'includes', 'internal', 'a
     }
 }
 
-Export-ModuleMember -function (Get-ChildItem -Path "$PSScriptRoot\public\*.ps1").basename
+if (test-path "$PSScriptRoot\public\*.ps1")
+{
+    Export-ModuleMember -function (Get-ChildItem -Path "$PSScriptRoot\public\*.ps1").basename
+}
