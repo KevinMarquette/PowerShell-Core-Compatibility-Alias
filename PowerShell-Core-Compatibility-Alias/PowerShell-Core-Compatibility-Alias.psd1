@@ -12,7 +12,7 @@
     FunctionsToExport = @()
     CmdletsToExport   = @()
     VariablesToExport = @()
-    AliasesToExport   = @()
+    AliasesToExport   = @('sc')
     # CompatiblePSEditions = @()
     # PowerShellVersion = ''
     # PowerShellHostName = ''

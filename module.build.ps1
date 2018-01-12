@@ -5,7 +5,7 @@ $script:Output = Join-Path $BuildRoot output
 $script:Destination = Join-Path $Output $ModuleName
 $script:ModulePath = "$Destination\$ModuleName.psm1"
 $script:ManifestPath = "$Destination\$ModuleName.psd1"
-$script:Imports = ( 'private', 'public', 'classes' )
+$script:Imports = ( 'private', 'public', 'classes', 'aliases' )
 $script:TestFile = "$PSScriptRoot\output\TestResults_PS$PSVersion`_$TimeStamp.xml"
 $global:SUTPath = $script:ManifestPath
 
@@ -64,7 +64,7 @@ Task BuildPSM1 -Inputs (Get-Item "$source\*\*.ps1") -Outputs $ModulePath {
     [System.Text.StringBuilder]$stringbuilder = [System.Text.StringBuilder]::new()    
     foreach ($folder in $imports )
     {
-        [void]$stringbuilder.AppendLine( "Write-Verbose 'Importing from [$Source\$folder]'" )
+        
         if (Test-Path "$source\$folder")
         {
             $fileList = Get-ChildItem "$source\$folder\*.ps1" | Where Name -NotLike '*.Tests.ps1'
@@ -152,7 +152,8 @@ Task BuildPSD1 -inputs (Get-ChildItem $Source -Recurse -File) -Outputs $Manifest
     {
         $version = $galleryVersion
     }
-    if ($version -eq $galleryVersion) {
+    if ($version -eq $galleryVersion)
+    {
         Write-Output "  Stepping [$bumpVersionType] version [$version]"
         $version = [version] (Step-Version $version -Type $bumpVersionType)
         Write-Output "  Using version: $version"
