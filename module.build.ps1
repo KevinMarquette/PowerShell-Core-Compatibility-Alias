@@ -92,10 +92,11 @@ Task BuildPSD1 -inputs (Get-ChildItem $Source -Recurse -File) -Outputs $Manifest
     Write-Output "  Update [$ManifestPath]"
     Copy-Item "$source\$ModuleName.psd1" -Destination $ManifestPath
  
- 
-    $functions = Get-ChildItem "$ModuleName\Public\*.ps1" | Where-Object { $_.name -notmatch 'Tests'} | Select-Object -ExpandProperty basename      
-    Set-ModuleFunctions -Name $ManifestPath -FunctionsToExport $functions
- 
+    if (test-path "$ModuleName\Public")
+    {
+        $functions = Get-ChildItem "$ModuleName\Public\*.ps1" | Where-Object { $_.name -notmatch 'Tests'} | Select-Object -ExpandProperty basename      
+        Set-ModuleFunctions -Name $ManifestPath -FunctionsToExport $functions
+    }
     Write-Output "  Detecting semantic versioning"
  
     # avoid error trying to load a module twice
