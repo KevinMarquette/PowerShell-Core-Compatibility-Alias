@@ -1,0 +1,9 @@
+site_name: PowerShell-Core-Compatibility-Alias
+repo_url: https://github.com/KevinMarquette/PowerShell-Core-Compatibility-Alias
+theme: readthedocs
+pages:
+  - Home: index.md
+  - PowerShell-Core-Compatibility-Alias Basics:
+    - What is PowerShell-Core-Compatibility-Alias: about.md
+    - Quick Start: Quick-Start-Installation-and-Example.md
+  - Acknowledgements: acknowledgements.md
